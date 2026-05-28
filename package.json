@@ -1,0 +1,30 @@
+{
+  "name": "geeks-program-leaderboard",
+  "version": "1.0.0",
+  "description": "Geeks Program Leaderboard - Real-time player ranking and performance tracking powered by Sanity CMS",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@sanity/client": "^6.4.0",
+    "lucide-react": "^0.263.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^8.0.14"
+  },
+  "keywords": [
+    "leaderboard",
+    "sanity",
+    "react",
+    "geeks-program",
+    "realtime"
+  ],
+  "author": "Geeks Program",
+  "license": "MIT"
+}
