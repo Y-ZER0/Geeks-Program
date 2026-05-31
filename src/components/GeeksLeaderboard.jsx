@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { usePlayers } from "../hooks/usePlayers";
 import { score, TIMEFRAMES, CATEGORIES } from "../utils/scoring";
-import { getTier } from "../utils/tiers";
+import { getTier, getProgress } from "../utils/tiers";
 import { fmt, formatTime } from "../utils/format";
 import { isConfigured } from "../config/sanity";
 import { Avatar } from "./Avatar";
@@ -49,6 +49,7 @@ export default function GeeksLeaderboard() {
     () =>
       [...players]
         .map((p) => ({ ...p, sc: score(p, tf, cat) }))
+      .filter((p) => cat === "All" || p.sc > 0)
         .sort((a, b) => b.sc - a.sc),
     [players, tf, cat]
   );
@@ -576,9 +577,26 @@ export default function GeeksLeaderboard() {
                     >
                       {i + 4}
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <Avatar player={player} size={36} pts={player.sc} />
-                      <span style={{ fontWeight: 600, fontSize: 13 }}>{player.name}</span>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <Avatar player={player} size={36} pts={player.sc} />
+                        <span style={{ fontWeight: 600, fontSize: 13 }}>{player.name}</span>
+                      </div>
+                      {(() => {
+                        const prog = getProgress(player.sc);
+                        const t = getTier(player.sc);
+                        return (
+                          <div style={{ height: 4, background: "rgba(255,255,255,0.06)", borderRadius: 2, overflow: "hidden" }}>
+                            <div style={{
+                              height: "100%",
+                              width: `${prog.pct}%`,
+                              background: t.color,
+                              borderRadius: 2,
+                              transition: "width 0.5s ease",
+                            }} />
+                          </div>
+                        );
+                      })()}
                     </div>
                     <div
                       style={{

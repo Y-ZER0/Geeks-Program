@@ -30,9 +30,9 @@ export default {
     // First entry ever: store 0 as baseline
     // Subsequent entries: delta from the last recorded values
     const hasHistory = scoreHistory.length > 0;
-    const ai = hasHistory ? newAi - (lastEntry.ai ?? 0) : 0;
-    const cyber = hasHistory ? newCyber - (lastEntry.cyber ?? 0) : 0;
-    const web = hasHistory ? newWeb - (lastEntry.web ?? 0) : 0;
+    const ai = hasHistory ? newAi - (lastEntry.ai ?? 0) : newAi;
+    const cyber = hasHistory ? newCyber - (lastEntry.cyber ?? 0) : newCyber;
+    const web = hasHistory ? newWeb - (lastEntry.web ?? 0) : newWeb;
 
     const mutation = {
       mutations: [
