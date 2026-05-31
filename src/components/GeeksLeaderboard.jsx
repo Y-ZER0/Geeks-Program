@@ -38,6 +38,7 @@ export default function GeeksLeaderboard() {
   const [hovered, setHovered] = useState(null);
   const [ttPos, setTtPos] = useState({ x: 0, y: 0 });
   const [animKey, setAnimKey] = useState(0);
+  const [page, setPage] = useState(0);
 
   // Auto-refresh every 60s when on "live" tab
   const { players, loading, error, refreshing, fetchedAt, refetch } = usePlayers(
@@ -56,14 +57,19 @@ export default function GeeksLeaderboard() {
 
   const top3 = sorted.slice(0, 3);
   const rest = sorted.slice(3);
+  const PAGE_SIZE = 20;
+  const totalPages = Math.ceil(rest.length / PAGE_SIZE);
+  const sliced = rest.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
   const podium = [top3[1], top3[0], top3[2]];
 
   const switchTf = (v) => {
     setTf(v);
+    setPage(0);
     setAnimKey((k) => k + 1);
   };
   const switchCat = (v) => {
     setCat(v);
+    setPage(0);
     setAnimKey((k) => k + 1);
   };
 
@@ -544,7 +550,7 @@ export default function GeeksLeaderboard() {
           {/* Skeleton rows while loading */}
           {loading
             ? Array.from({ length: 6 }).map((_, i) => <SkeletonRow key={i} delay={i * 0.1} />)
-            : rest.map((player, i) => {
+            : sliced.map((player, i) => {
                 const tier = getTier(player.sc);
                 const isHov = hovered?.id === player.id;
                 return (
@@ -575,7 +581,7 @@ export default function GeeksLeaderboard() {
                         alignItems: "center",
                       }}
                     >
-                      {i + 4}
+                      {page * PAGE_SIZE + i + 4}
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -631,6 +637,56 @@ export default function GeeksLeaderboard() {
             </div>
           )}
         </div>
+
+        {/* ══ PAGINATION ══ */}
+        {totalPages > 1 && (
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 16,
+            marginTop: 20,
+            marginBottom: 4,
+          }}>
+            <button
+              className="ctrl-btn"
+              disabled={page === 0}
+              onClick={() => setPage(p => p - 1)}
+              style={{
+                padding: "8px 16px",
+                borderRadius: 8,
+                fontSize: 12,
+                fontWeight: 600,
+                background: page === 0 ? "rgba(44,24,24,0.3)" : "rgba(250,164,26,0.14)",
+                border: `1px solid ${page === 0 ? "rgba(216,189,130,0.15)" : "#FAA41A"}`,
+                color: page === 0 ? "#9a8070" : "#FAA41A",
+                cursor: page === 0 ? "default" : "pointer",
+              }}
+            >
+              ← Previous
+            </button>
+            <span style={{ fontSize: 12, color: "#D8BD82" }}>
+              Page {page + 1} of {totalPages}
+            </span>
+            <button
+              className="ctrl-btn"
+              disabled={page === totalPages - 1}
+              onClick={() => setPage(p => p + 1)}
+              style={{
+                padding: "8px 16px",
+                borderRadius: 8,
+                fontSize: 12,
+                fontWeight: 600,
+                background: page === totalPages - 1 ? "rgba(44,24,24,0.3)" : "rgba(250,164,26,0.14)",
+                border: `1px solid ${page === totalPages - 1 ? "rgba(216,189,130,0.15)" : "#FAA41A"}`,
+                color: page === totalPages - 1 ? "#9a8070" : "#FAA41A",
+                cursor: page === totalPages - 1 ? "default" : "pointer",
+              }}
+            >
+              Next →
+            </button>
+          </div>
+        )}
 
         {/* ══ FOOTER ══ */}
         <div style={{ textAlign: "center", marginTop: 32 }}>
