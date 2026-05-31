@@ -18,7 +18,6 @@ const GROQ = encodeURIComponent(`
   *[_type == "player"] | order(name asc) {
     "id":  _id,
     "name": name,
-    "tasks": coalesce(tasksCompleted, 0),
     "live": {
       "AI": coalesce(live.ai,    0),
       "Cy": coalesce(live.cyber, 0),

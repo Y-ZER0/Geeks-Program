@@ -10,7 +10,6 @@ import {
   Code,
   Brain,
   Users,
-  CheckSquare,
   Zap,
   Star,
   RefreshCw,
@@ -56,7 +55,6 @@ export default function GeeksLeaderboard() {
 
   const top3 = sorted.slice(0, 3);
   const rest = sorted.slice(3);
-  const totalTasks = sorted.reduce((a, p) => a + (p.tasks || 0), 0);
   const podium = [top3[1], top3[0], top3[2]];
 
   const switchTf = (v) => {
@@ -171,41 +169,35 @@ export default function GeeksLeaderboard() {
         </header>
 
         {/* ══ STATS ROW ══ */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 12, marginBottom: 24 }}>
-          {[
-            { icon: <CheckSquare size={15} color="#FAA41A" />, label: "Tasks Done", val: fmt(totalTasks) },
-            { icon: <Users size={15} color="#1C75BC" />, label: "Active Geeks", val: players.length },
-          ].map((s, i) => (
-            <div
-              key={i}
-              style={{
-                background: "rgba(44,24,24,0.65)",
-                backdropFilter: "blur(12px)",
-                border: "1px solid rgba(250,164,26,0.18)",
-                borderRadius: 10,
-                padding: "12px 14px",
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
-            >
-              {s.icon}
-              <div>
-                <div
-                  style={{
-                    fontSize: 10,
-                    color: "#D8BD82",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.09em",
-                    marginBottom: 1,
-                  }}
-                >
-                  {s.label}
-                </div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#F5E6D3" }}>{s.val}</div>
+        <div style={{ marginBottom: 24 }}>
+          <div
+            style={{
+              background: "rgba(44,24,24,0.65)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(250,164,26,0.18)",
+              borderRadius: 10,
+              padding: "12px 14px",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+            }}
+          >
+            <Users size={15} color="#1C75BC" />
+            <div>
+              <div
+                style={{
+                  fontSize: 10,
+                  color: "#D8BD82",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.09em",
+                  marginBottom: 1,
+                }}
+              >
+                Active Geeks
               </div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#F5E6D3" }}>{players.length}</div>
             </div>
-          ))}
+          </div>
         </div>
 
         {/* ══ ERROR BANNER ══ */}
@@ -531,7 +523,7 @@ export default function GeeksLeaderboard() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "56px 1fr 100px 120px 130px",
+              gridTemplateColumns: "56px 1fr 120px 130px",
               padding: "11px 20px",
               background: "rgba(250,164,26,0.1)",
               borderBottom: "1px solid rgba(250,164,26,0.18)",
@@ -544,7 +536,6 @@ export default function GeeksLeaderboard() {
           >
             <span>Rank</span>
             <span>Player</span>
-            <span style={{ textAlign: "center" }}>Tasks</span>
             <span style={{ textAlign: "center" }}>Points</span>
             <span style={{ textAlign: "center" }}>Tier</span>
           </div>
@@ -566,7 +557,7 @@ export default function GeeksLeaderboard() {
                     onMouseLeave={() => setHovered(null)}
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "56px 1fr 100px 120px 130px",
+                      gridTemplateColumns: "56px 1fr 120px 130px",
                       padding: "13px 20px",
                       borderBottom: "1px solid rgba(250,164,26,0.07)",
                       background: isHov ? tier.bg : i % 2 === 0 ? "rgba(44,24,24,0.18)" : "transparent",
@@ -588,19 +579,6 @@ export default function GeeksLeaderboard() {
                     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                       <Avatar player={player} size={36} pts={player.sc} />
                       <span style={{ fontWeight: 600, fontSize: 13 }}>{player.name}</span>
-                    </div>
-                    <div
-                      style={{
-                        textAlign: "center",
-                        fontWeight: 600,
-                        fontSize: 13,
-                        color: "#D8BD82",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {player.tasks}
                     </div>
                     <div
                       style={{

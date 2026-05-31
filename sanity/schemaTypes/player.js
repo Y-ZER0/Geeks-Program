@@ -32,16 +32,6 @@ export default {
       description: 'Full name (e.g., "John Doe"). Used to auto-extract initials on frontend.',
       validation: R => R.required().max(50),
     },
-    {
-      name:  'tasksCompleted',
-      title: 'Tasks Completed',
-      type:  'number',
-      group: 'profile',
-      description: 'Number of tasks completed (manually set).',
-      initialValue: 0,
-      validation: R => R.required().min(0).integer(),
-    },
-
     /* ─── Live ─── */
     {
       name:    'live',

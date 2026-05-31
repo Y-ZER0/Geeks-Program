@@ -27,22 +27,37 @@ export const score = (p, tf, cat) => {
 };
 
 /**
- * Calculate rolling timeframe scores from score history
+ * Calculate timeframe scores from score history using fixed periods
  * @param {Array} scoreHistory - Array of { timestamp, ai, cyber, web } objects
- * @param {Number} days - Number of days to include (14 for 2-week, 30 for monthly)
- * @returns {Object} { AI, Cy, Wb } - Sum of scores from last N days
+ * @param {String} type - 'w2' for 14-day periods, 'mo' for calendar months
+ * @returns {Object} { AI, Cy, Wb } - Sum of scores within the current period
  */
-export const calculateTimeframeScores = (scoreHistory = [], days) => {
+export const calculateTimeframeScores = (scoreHistory = [], type) => {
   if (!scoreHistory || scoreHistory.length === 0) {
     return { AI: 0, Cy: 0, Wb: 0 };
   }
 
   const now = new Date();
-  const cutoffDate = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+
+  let periodStart, periodEnd;
+
+  if (type === 'w2') {
+    const epoch = new Date('2026-01-05T00:00:00Z');
+    const msSinceEpoch = now - epoch;
+    const periodMs = 14 * 24 * 60 * 60 * 1000;
+    const currentPeriod = Math.floor(msSinceEpoch / periodMs);
+    periodStart = new Date(epoch.getTime() + currentPeriod * periodMs);
+    periodEnd = new Date(periodStart.getTime() + periodMs);
+  } else if (type === 'mo') {
+    periodStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    periodEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  } else {
+    return { AI: 0, Cy: 0, Wb: 0 };
+  }
 
   const filtered = scoreHistory.filter(entry => {
     const entryDate = new Date(entry.timestamp);
-    return entryDate >= cutoffDate;
+    return entryDate >= periodStart && entryDate < periodEnd;
   });
 
   return filtered.reduce(

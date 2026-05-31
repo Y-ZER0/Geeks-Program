@@ -28,14 +28,13 @@ const extractInitials = (name) => {
  */
 const transformPlayer = (rawPlayer) => {
   const initials = extractInitials(rawPlayer.name);
-  const w2Scores = calculateTimeframeScores(rawPlayer.scoreHistory, 14);
-  const moScores = calculateTimeframeScores(rawPlayer.scoreHistory, 30);
+  const w2Scores = calculateTimeframeScores(rawPlayer.scoreHistory, 'w2');
+  const moScores = calculateTimeframeScores(rawPlayer.scoreHistory, 'mo');
 
   return {
     id: rawPlayer.id,
     name: rawPlayer.name,
     ini: initials,
-    tasks: rawPlayer.tasks,
     pts: {
       live: rawPlayer.live,
       w2: w2Scores,
