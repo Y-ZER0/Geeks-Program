@@ -46,6 +46,67 @@ export default {
       ],
     },
 
+    /* ─── Score History (Backend Only) ─── */
+    {
+      name:    'scoreHistory',
+      title:   'Score History (Archive)',
+      type:    'array',
+      hidden:  true,
+      description: 'Permanent archive of all score deltas. Managed by webhook, never reset.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'ai',        type: 'number', title: 'AI Delta' },
+            { name: 'cyber',     type: 'number', title: 'Cyber Delta' },
+            { name: 'web',       type: 'number', title: 'Web Delta' },
+            { name: 'timestamp', type: 'datetime', title: 'Recorded At' },
+          ],
+        },
+      ],
+    },
+
+    /* ─── 2-Week Resettable Score ─── */
+    {
+      name:    'scoreW2',
+      title:   '2-Week Score (Resettable)',
+      type:    'array',
+      hidden:  true,
+      description: 'Score deltas within current 2-week period. Auto-resets on period boundary.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'ai',        type: 'number', title: 'AI Delta' },
+            { name: 'cyber',     type: 'number', title: 'Cyber Delta' },
+            { name: 'web',       type: 'number', title: 'Web Delta' },
+            { name: 'timestamp', type: 'datetime', title: 'Recorded At' },
+            { name: 'periodId',  type: 'number', title: 'Period ID' },
+          ],
+        },
+      ],
+    },
+
+    /* ─── Monthly Resettable Score ─── */
+    {
+      name:    'scoreMo',
+      title:   'Monthly Score (Resettable)',
+      type:    'array',
+      hidden:  true,
+      description: 'Score deltas within current calendar month. Auto-resets on month boundary.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'ai',        type: 'number', title: 'AI Delta' },
+            { name: 'cyber',     type: 'number', title: 'Cyber Delta' },
+            { name: 'web',       type: 'number', title: 'Web Delta' },
+            { name: 'timestamp', type: 'datetime', title: 'Recorded At' },
+            { name: 'monthYear', type: 'string', title: 'Month (YYYY-MM)' },
+          ],
+        },
+      ],
+    },
 
   ],
 
