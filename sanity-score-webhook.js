@@ -97,15 +97,28 @@ export default {
     });
 
     if (newW2Entry) {
-      mutations.push({
-        patch: {
-          id: docId,
-          insert: {
-            after: 'scoreW2[-1]',
-            items: [newW2Entry],
+      if (scoreW2.length === 0) {
+        // First entry: initialize array
+        mutations.push({
+          patch: {
+            id: docId,
+            set: {
+              scoreW2: [newW2Entry],
+            },
           },
-        },
-      });
+        });
+      } else {
+        // New period: append to existing array
+        mutations.push({
+          patch: {
+            id: docId,
+            insert: {
+              after: 'scoreW2[-1]',
+              items: [newW2Entry],
+            },
+          },
+        });
+      }
     } else if (scoreW2.length > 0) {
       // If period hasn't changed, increment the last entry
       mutations.push({
@@ -121,15 +134,28 @@ export default {
     }
 
     if (newMoEntry) {
-      mutations.push({
-        patch: {
-          id: docId,
-          insert: {
-            after: 'scoreMo[-1]',
-            items: [newMoEntry],
+      if (scoreMo.length === 0) {
+        // First entry: initialize array
+        mutations.push({
+          patch: {
+            id: docId,
+            set: {
+              scoreMo: [newMoEntry],
+            },
           },
-        },
-      });
+        });
+      } else {
+        // New period: append to existing array
+        mutations.push({
+          patch: {
+            id: docId,
+            insert: {
+              after: 'scoreMo[-1]',
+              items: [newMoEntry],
+            },
+          },
+        });
+      }
     } else if (scoreMo.length > 0) {
       // If period hasn't changed, increment the last entry
       mutations.push({
