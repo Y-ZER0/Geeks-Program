@@ -35,11 +35,10 @@ export default {
     // ═══════════════════════════════════════════════════════════════════════
     // CALCULATE DELTAS
     // ═══════════════════════════════════════════════════════════════════════
-    const lastEntry = scoreHistory[scoreHistory.length - 1] || {};
     const hasHistory = scoreHistory.length > 0;
-    const ai = hasHistory ? newAi - (lastEntry.ai ?? 0) : newAi;
-    const cyber = hasHistory ? newCyber - (lastEntry.cyber ?? 0) : newCyber;
-    const web = hasHistory ? newWeb - (lastEntry.web ?? 0) : newWeb;
+    const ai = hasHistory ? newAi - (oldLive.ai ?? 0) : newAi;
+    const cyber = hasHistory ? newCyber - (oldLive.cyber ?? 0) : newCyber;
+    const web = hasHistory ? newWeb - (oldLive.web ?? 0) : newWeb;
 
     const now = new Date();
     const timestamp = now.toISOString();
