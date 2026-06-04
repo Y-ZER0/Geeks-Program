@@ -1,0 +1,68 @@
+[
+  {
+    "id": "player-1",
+    "name": "Ahmed Hassan",
+    "ini": "AH",
+    "col": "#FAA41A",
+    "pts": {
+      "live": { "AI": 320, "Cy": 280, "Wb": 410 },
+      "w2":   { "AI": 640, "Cy": 510, "Wb": 780 },
+      "mo":   { "AI": 980, "Cy": 840, "Wb": 1150 }
+    }
+  },
+  {
+    "id": "player-2",
+    "name": "Layla Khoury",
+    "ini": "LK",
+    "col": "#C084FC",
+    "pts": {
+      "live": { "AI": 290, "Cy": 350, "Wb": 370 },
+      "w2":   { "AI": 570, "Cy": 680, "Wb": 720 },
+      "mo":   { "AI": 890, "Cy": 1020, "Wb": 1090 }
+    }
+  },
+  {
+    "id": "player-3",
+    "name": "Omar Saleh",
+    "ini": "OS",
+    "col": "#A5F3FC",
+    "pts": {
+      "live": { "AI": 180, "Cy": 220, "Wb": 260 },
+      "w2":   { "AI": 400, "Cy": 480, "Wb": 540 },
+      "mo":   { "AI": 650, "Cy": 710, "Wb": 830 }
+    }
+  },
+  {
+    "id": "player-4",
+    "name": "Sara Nasser",
+    "ini": "SN",
+    "col": "#FFD700",
+    "pts": {
+      "live": { "AI": 140, "Cy": 190, "Wb": 210 },
+      "w2":   { "AI": 310, "Cy": 420, "Wb": 460 },
+      "mo":   { "AI": 480, "Cy": 640, "Wb": 700 }
+    }
+  },
+  {
+    "id": "player-5",
+    "name": "Khalid Mansour",
+    "ini": "KM",
+    "col": "#D1D5DB",
+    "pts": {
+      "live": { "AI": 90, "Cy": 130, "Wb": 160 },
+      "w2":   { "AI": 200, "Cy": 270, "Wb": 340 },
+      "mo":   { "AI": 310, "Cy": 420, "Wb": 530 }
+    }
+  },
+  {
+    "id": "player-6",
+    "name": "Dania Fares",
+    "ini": "DF",
+    "col": "#CD7F32",
+    "pts": {
+      "live": { "AI": 60, "Cy": 80, "Wb": 100 },
+      "w2":   { "AI": 130, "Cy": 170, "Wb": 210 },
+      "mo":   { "AI": 200, "Cy": 260, "Wb": 320 }
+    }
+  }
+]

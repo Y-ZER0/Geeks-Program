@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://geeks-leaderboard.netlify.app/sitemap.xml
