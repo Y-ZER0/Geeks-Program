@@ -56,11 +56,11 @@ export default function App() {
           <meta property="og:title" content="Geeks Program Leaderboard | IEEE CS UJ" />
           <meta property="og:description" content="Live leaderboard for the IEEE CS UJ Geeks Program — AI, Cybersecurity & Web Development." />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://geeks-leaderboard.netlify.app" />
+          <meta property="og:url" content="https://geeks-program-cs.netlify.app" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Geeks Program Leaderboard | IEEE CS UJ" />
           <meta name="twitter:description" content="Live leaderboard for the IEEE CS UJ Geeks Program — AI, Cybersecurity & Web Development." />
-          <link rel="canonical" href="https://geeks-leaderboard.netlify.app" />
+          <link rel="canonical" href="https://geeks-program-cs.netlify.app" />
         </Helmet>
 
         <Routes>

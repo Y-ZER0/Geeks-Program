@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://geeks-leaderboard.netlify.app/sitemap.xml
+Sitemap: https://geeks-program-cs.netlify.app/sitemap.xml
