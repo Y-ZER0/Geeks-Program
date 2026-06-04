@@ -12,8 +12,11 @@ export default function HoverTooltip({ player, pts, pos }) {
     return () => clearTimeout(t);
   }, [pts]);
 
-  const left = Math.min(pos.x + 16, window.innerWidth - 244);
-  const top = Math.max(pos.y - 130, 8);
+  const tooltipH = 150;
+  const left = Math.min(pos.x + 12, window.innerWidth - 244);
+  const top = pos.y + 18 + tooltipH > window.innerHeight
+    ? Math.max(pos.y - tooltipH - 6, 8)
+    : Math.max(pos.y + 18, 8);
 
   return (
     <div style={{
