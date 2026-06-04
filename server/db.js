@@ -5,7 +5,6 @@ const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
   console.error("Missing SUPABASE_URL or SUPABASE_SERVICE_KEY in environment");
-  process.exit(1);
 }
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
