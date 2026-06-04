@@ -3,6 +3,6 @@ import app from "../../../server/app.js";
 
 export const handler = serverless(app, {
   request: (req) => {
-    req.url = `/api${req.url}`;
+    req.url = `/api/${req.url}`;
   }
 })
