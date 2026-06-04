@@ -154,4 +154,4 @@ router.get("/audit-log", async (req, res) => {
   }
 });
 
-export default router;
+export { router };
