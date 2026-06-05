@@ -153,7 +153,7 @@ begin
   -- Update scores
   update leaderboard_scores ls
   set
-    live_pts     = greatest(0, ls.live_pts     + case when p_delta > 0 then p_delta else 0 end),
+    live_pts     = greatest(0, ls.live_pts     + p_delta),
     biweekly_pts = ls.biweekly_pts + p_delta,
     monthly_pts  = ls.monthly_pts  + p_delta
   where ls.player_id = p_player_id and ls.category = p_category;
